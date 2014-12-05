@@ -96,12 +96,12 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django_sql_log.middleware.RequestLoggingMiddleware',
-    'django_sql_log.middleware.ResponseLoggingMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_sql_log.middleware.ResponseLoggingMiddleware',
 )
 
 ROOT_URLCONF = 'django_sql_log_demo.urls'
