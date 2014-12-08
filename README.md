@@ -3,6 +3,24 @@
 Goal: provide a middleware that inserts start/stop annotations that would
 land on the SQL logs.
 
+Like this:
+
+    2014-12-08 09:33:58 CET LOG:  duration: 0.174 ms  statement: BEGIN
+    2014-12-08 09:33:58 CET LOG:  duration: 0.502 ms  statement: SET TIME ZONE 'UTC'
+    2014-12-08 09:33:58 CET LOG:  duration: 0.053 ms  statement: COMMIT
+    2014-12-08 09:33:58 CET LOG:  duration: 0.228 ms  statement: SHOW default_transaction_isolation
+    2014-12-08 09:33:58 CET LOG:  duration: 0.043 ms  statement: BEGIN
+    2014-12-08 09:33:58 CET LOG:  duration: 0.354 ms  statement: SELECT 'django_sql_log_demo.views.Index_START'
+    2014-12-08 09:33:58 CET LOG:  duration: 1.221 ms  statement: SELECT "dummy_article"."id", "dummy_article"."title", "dummy_article"."body" FROM "dummy_article"
+    2014-12-08 09:33:58 CET LOG:  duration: 0.118 ms  statement: SELECT 'django_sql_log_demo.views.Index_STOP'
+    2014-12-08 09:33:58 CET LOG:  duration: 0.067 ms  statement: ROLLBACK
+    2014-12-08 09:33:59 CET LOG:  duration: 0.179 ms  statement: BEGIN
+    2014-12-08 09:33:59 CET LOG:  duration: 0.513 ms  statement: SET TIME ZONE 'UTC'
+    2014-12-08 09:33:59 CET LOG:  duration: 0.054 ms  statement: COMMIT
+    2014-12-08 09:33:59 CET LOG:  duration: 0.231 ms  statement: SHOW default_transaction_isolation
+    2014-12-08 09:34:00 CET LOG:  duration: 117.999 ms  statement: DROP DATABASE "test_hello_world"
+
+
 The middlewares available have been tested only with Postgresql databases, but
 it should work with other SQL-based RDBMs.
 
