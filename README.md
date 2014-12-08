@@ -43,6 +43,27 @@ Although the order of the middlewares is not crucial, it is better to make sure
 that the RequestLoggingMiddleware is near the first place in the list, and the
 ResponseLoggingMiddleware near the end.
 
+### Log format string
+
+By default, the log format string is:
+
+    {full_name}_{phase}
+
+In the demo site, this would result in:
+
+    django_sql_log_demo.views.Index_START
+
+for the START event in the log.
+
+You can customize this format by adding the ``DJANGO_SQL_LOG_FORMAT`` to your
+settings. Available format variables are (with correspondance in the demo tests):
+
+* ``module_name``: ``django_sql_log_demo.views``,
+* ``func_name``: ``Index``,
+* ``full_name``: ``django_sql_log_demo.views.Index``,
+* ``phase``: START or STOP,
+
+
 ## Hacking
 
 If you want to run the test-suite, you **must** have a ``settings_pg.py`` file
