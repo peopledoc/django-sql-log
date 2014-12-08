@@ -43,6 +43,10 @@ class LoggingTestCase(TestCase):
                 self.assertTrue(first.startswith('call.Request'))
                 self.assertTrue(last.startswith('call.Response'))
 
+    def test_404(self):
+        response = self.client.get('/you-are-not-real')
+        self.assertEquals(response.status_code, 404)
+
     def test_zzz_all(self):
         # This test is only here to track the true system log, where the
         # queries should appear. It's more a "smoke test" than a unittest.
@@ -69,3 +73,7 @@ class FormatTestCase(TestCase):
         self.assertEquals(log_string, 'django_sql_log_demo.views / Index / '
                                       'django_sql_log_demo.views.Index / '
                                       'START')
+
+    def test_404(self):
+        log_string = get_log_string(self.Request('/you-are-not-real'), 'START')
+        self.assertFalse(log_string)

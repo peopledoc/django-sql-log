@@ -12,7 +12,7 @@ logs. Example::
 
 
 """
-from django.core.urlresolvers import resolve
+from django.core.urlresolvers import resolve, Resolver404
 from django.db import connection
 from django.conf import settings
 
@@ -20,7 +20,10 @@ from django.conf import settings
 def get_log_string(request, phase):
     DJANGO_SQL_LOG_FORMAT = getattr(
         settings, 'DJANGO_SQL_LOG_FORMAT', '{full_name}_{phase}')
-    func, args, kwargs = resolve(request.path)
+    try:
+        func, args, kwargs = resolve(request.path)
+    except Resolver404:
+        return ""
     func_name = func.__name__
     module_name = func.__module__
     full_name = '.'.join([func.__module__, func.__name__])
@@ -42,7 +45,8 @@ class LoggingMiddleware(object):
     def sql_log(self, request):
         cursor = connection.cursor()
         msg = get_log_string(request, self.phase)
-        cursor.execute("SELECT %s", [msg])
+        if msg:
+            cursor.execute("SELECT %s", [msg])
 
 
 class RequestLoggingMiddleware(LoggingMiddleware):
