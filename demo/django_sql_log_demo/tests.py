@@ -47,6 +47,9 @@ class LoggingTestCase(TestCase):
         response = self.client.get('/you-are-not-real')
         self.assertEquals(response.status_code, 404)
 
+    def test_500(self):
+        self.assertRaises(Exception, self.client.get, '/500/')
+
     def test_zzz_all(self):
         # This test is only here to track the true system log, where the
         # queries should appear. It's more a "smoke test" than a unittest.
@@ -77,3 +80,7 @@ class FormatTestCase(TestCase):
     def test_404(self):
         log_string = get_log_string(self.Request('/you-are-not-real'), 'START')
         self.assertFalse(log_string)
+
+    def test_500(self):
+        log_string = get_log_string(self.Request('/500/'), 'START')
+        self.assertTrue(log_string)  # this 500 view doesn't trigger bad log.
