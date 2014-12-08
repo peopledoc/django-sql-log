@@ -7,16 +7,17 @@ from setuptools import setup
 here = os.path.abspath(os.path.dirname(__file__))
 
 NAME = u'django-sql-log'
-VERSION = '0.0.1'
-README = 'Not ready yet'
-DESCRIPTION = u'Loging made simple.'
+VERSION = '1.0.0'
+README = 'Provide a middleware that writes start/stop events that in your ' \
+         'main database SQL logs.'
+DESCRIPTION = u'Write Start/Stop events in your SQL logs.'
 PACKAGES = ['django_sql_log']
 REQUIREMENTS = [
     'django<1.7',
 ]
 AUTHOR = u'Novapost'
 EMAIL = u'bruno.bord@novapost.fr'
-URL = u''
+URL = u'https://github.com/novapost/django-sql-log'
 CLASSIFIERS = []
 KEYWORDS = []
 
