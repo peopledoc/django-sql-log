@@ -16,7 +16,21 @@ from django.core.urlresolvers import resolve
 from django.db import connection
 from django.conf import settings
 
-DJANGO_SQL_LOG_FORMAT = getattr(settings, 'DJANGO_SQL_LOG_FORMAT', '{}_{}')
+
+def get_log_string(request, phase):
+    DJANGO_SQL_LOG_FORMAT = getattr(
+        settings, 'DJANGO_SQL_LOG_FORMAT', '{full_name}_{phase}')
+    func, args, kwargs = resolve(request.path)
+    func_name = func.__name__
+    module_name = func.__module__
+    full_name = '.'.join([func.__module__, func.__name__])
+
+    return DJANGO_SQL_LOG_FORMAT.format(**{
+        'module_name': module_name,
+        'func_name': func_name,
+        'full_name': full_name,
+        'phase': phase,
+    })
 
 
 class LoggingMiddleware(object):
@@ -26,10 +40,8 @@ class LoggingMiddleware(object):
         raise NotImplementedError('You need to set the phase. START or STOP')
 
     def sql_log(self, request):
-        func, args, kwargs = resolve(request.path)
-        name = '.'.join([func.__module__, func.__name__])
         cursor = connection.cursor()
-        msg = DJANGO_SQL_LOG_FORMAT.format(name, self.phase)
+        msg = get_log_string(request, self.phase)
         cursor.execute("SELECT %s", [msg])
 
 

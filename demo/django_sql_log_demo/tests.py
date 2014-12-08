@@ -1,6 +1,10 @@
 from django.test import TestCase
+from django.test.utils import override_settings
+
 from mock import Mock, patch, MagicMock
 
+
+from django_sql_log.middleware import get_log_string
 from django_sql_log.middleware import RequestLoggingMiddleware
 from django_sql_log.middleware import ResponseLoggingMiddleware
 RequestLoggingMiddleware = Mock(RequestLoggingMiddleware)
@@ -46,3 +50,22 @@ class LoggingTestCase(TestCase):
         # TestSuite.
         response = self.client.get('/')
         self.assertEquals(response.status_code, 200)
+
+
+class FormatTestCase(TestCase):
+
+    class Request(object):
+        def __init__(self, path):
+            self.path = path
+
+    def test_default(self):
+        log_string = get_log_string(self.Request('/'), 'START')
+        self.assertEquals(log_string, 'django_sql_log_demo.views.Index_START')
+
+    @override_settings(DJANGO_SQL_LOG_FORMAT='{module_name} / {func_name} / '
+                                             '{full_name} / {phase}')
+    def test_overridden(self):
+        log_string = get_log_string(self.Request('/'), 'START')
+        self.assertEquals(log_string, 'django_sql_log_demo.views / Index / '
+                                      'django_sql_log_demo.views.Index / '
+                                      'START')
