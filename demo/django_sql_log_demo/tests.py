@@ -5,15 +5,13 @@ from mock import Mock, patch, MagicMock
 
 
 from django_sql_log.middleware import get_log_string
-from django_sql_log.middleware import RequestLoggingMiddleware
-from django_sql_log.middleware import ResponseLoggingMiddleware
-RequestLoggingMiddleware = Mock(RequestLoggingMiddleware)
-ResponseLoggingMiddleware = Mock(ResponseLoggingMiddleware)
+from django_sql_log.middleware import SQLLoggingMiddleware
+SQLLoggingMiddleware = Mock(SQLLoggingMiddleware)
 
-REQUEST_MODULE = 'django_sql_log.middleware.RequestLoggingMiddleware' \
+REQUEST_MODULE = 'django_sql_log.middleware.SQLLoggingMiddleware' \
                  '.process_request'
 
-RESPONSE_MODULE = 'django_sql_log.middleware.ResponseLoggingMiddleware' \
+RESPONSE_MODULE = 'django_sql_log.middleware.SQLLoggingMiddleware' \
                   '.process_response'
 
 

@@ -95,8 +95,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django_sql_log.middleware.ResponseLoggingMiddleware',
-    'django_sql_log.middleware.RequestLoggingMiddleware',
+    'django_sql_log.middleware.SQLLoggingMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

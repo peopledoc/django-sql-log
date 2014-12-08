@@ -5,7 +5,7 @@ settings.MIDDLEWARE_CLASSES list in order to log START and STOP in the SQL
 logs. Example::
 
     MIDDLEWARE_CLASSES = (
-        'django_sql_log.middleware.RequestLoggingMiddleware',
+        'django_sql_log.middleware.SQLLoggingMiddleware',
         # Your other middlewares...
         'django_sql_log.middleware.ResponseLoggingMiddleware',
     )
@@ -36,37 +36,17 @@ def get_log_string(request, phase):
     })
 
 
-class LoggingMiddleware(object):
+class SQLLoggingMiddleware(object):
 
-    @property
-    def phase(self):
-        raise NotImplementedError('You need to set the phase. START or STOP')
-
-    def sql_log(self, request):
+    def sql_log(self, request, phase):
         cursor = connection.cursor()
-        msg = get_log_string(request, self.phase)
+        msg = get_log_string(request, phase)
         if msg:
             cursor.execute("SELECT %s", [msg])
 
-
-class RequestLoggingMiddleware(LoggingMiddleware):
-    """
-    This class must be added to the settings.MIDDLEWARE_CLASSES list to log
-    incoming requests in the database log
-    """
-    phase = "START"
-
     def process_request(self, request):
-        self.sql_log(request)
-
-
-class ResponseLoggingMiddleware(LoggingMiddleware):
-    """
-    This class must be added to the settings.MIDDLEWARE_CLASSES list to log
-    the processed response to the database log
-    """
-    phase = "STOP"
+        self.sql_log(request, "START")
 
     def process_response(self, request, response):
-        self.sql_log(request)
+        self.sql_log(request, "STOP")
         return response
