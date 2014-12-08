@@ -14,6 +14,9 @@ logs. Example::
 """
 from django.core.urlresolvers import resolve
 from django.db import connection
+from django.conf import settings
+
+DJANGO_SQL_LOG_FORMAT = getattr(settings, 'DJANGO_SQL_LOG_FORMAT', '{}_{}')
 
 
 class LoggingMiddleware(object):
@@ -26,7 +29,7 @@ class LoggingMiddleware(object):
         func, args, kwargs = resolve(request.path)
         name = '.'.join([func.__module__, func.__name__])
         cursor = connection.cursor()
-        msg = '%s_%s' % (name, self.phase)
+        msg = DJANGO_SQL_LOG_FORMAT.format(name, self.phase)
         cursor.execute("SELECT %s", [msg])
 
 
