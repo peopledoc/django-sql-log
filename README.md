@@ -21,7 +21,7 @@ Like this:
     2014-12-08 09:34:00 CET LOG:  duration: 117.999 ms  statement: DROP DATABASE "test_hello_world"
 
 
-The middlewares available have been tested only with Postgresql databases, but
+The available middleware has been tested only with Postgresql databases, but
 it should work with other SQL-based RDBMs.
 
 ## Usage
@@ -29,19 +29,17 @@ it should work with other SQL-based RDBMs.
 Add this package to your requirements, and install it the usual way. You don't
 have to add the application to the ``INSTALLED_APPS``, there's no model to sync.
 
-Add the middlewares like this:
+Add the middleware like this:
 
 ```python
 MIDDLEWARE_CLASSES = (
-    'django_sql_log.middleware.RequestLoggingMiddleware',
+    'django_sql_log.middleware.SQLLoggingMiddleware',
     # ...
-    'django_sql_log.middleware.ResponseLoggingMiddleware',
 )
 ```
 
 Although the order of the middlewares is not crucial, it is better to make sure
-that the RequestLoggingMiddleware is near the first place in the list, and the
-ResponseLoggingMiddleware near the end.
+that the middleware is near the first place in the list.
 
 ### Log format string
 

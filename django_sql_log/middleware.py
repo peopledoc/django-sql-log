@@ -7,7 +7,6 @@ logs. Example::
     MIDDLEWARE_CLASSES = (
         'django_sql_log.middleware.SQLLoggingMiddleware',
         # Your other middlewares...
-        'django_sql_log.middleware.ResponseLoggingMiddleware',
     )
 
 
