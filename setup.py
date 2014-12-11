@@ -18,22 +18,33 @@ REQUIREMENTS = [
 AUTHOR = u'Novapost'
 EMAIL = u'bruno.bord@novapost.fr'
 URL = u'https://github.com/novapost/django-sql-log'
-CLASSIFIERS = []
-KEYWORDS = []
+CLASSIFIERS = [
+    'Development Status :: 4 - Beta',
+    'Environment :: Web Environment',
+    'Framework :: Django',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Topic :: Database',
+    'Topic :: System :: Logging',
+]
+KEYWORDS = ['django', 'SQL', 'log', 'postgresql']
 
 
 if __name__ == '__main__':  # Don't run setup() when we import this module.
-    setup(name=NAME,
-          version=VERSION,
-          description=DESCRIPTION,
-          long_description=README,
-          classifiers=CLASSIFIERS,
-          keywords=' '.join(KEYWORDS),
-          author=AUTHOR,
-          author_email=EMAIL,
-          url=URL,
-          packages=PACKAGES,
-          include_package_data=True,
-          zip_safe=False,
-          install_requires=REQUIREMENTS,
-          )
+    setup(
+        name=NAME,
+        version=VERSION,
+        description=DESCRIPTION,
+        long_description=README,
+        classifiers=CLASSIFIERS,
+        keywords=' '.join(KEYWORDS),
+        author=AUTHOR,
+        author_email=EMAIL,
+        url=URL,
+        packages=PACKAGES,
+        include_package_data=True,
+        zip_safe=False,
+        install_requires=REQUIREMENTS,
+    )

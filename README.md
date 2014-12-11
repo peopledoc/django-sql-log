@@ -74,3 +74,8 @@ should be able to create / delete databases.
 
 With `tox` installed, simply run the command `tox`. This should run the tests
 for Sqlite and postgresql environments, if ready.
+
+----
+
+This software is published under the terms of the MIT License. Please see the
+``LICENSE`` file for more information.
