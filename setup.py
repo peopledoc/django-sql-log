@@ -8,8 +8,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 NAME = u'django-sql-log'
 VERSION = '1.1.0'
-README = 'Provide a middleware that writes start/stop events that in your ' \
-         'main database SQL logs.'
+README = open(os.path.join(here, 'README.rst')).read()
 DESCRIPTION = u'Write Start/Stop events in your SQL logs.'
 PACKAGES = ['django_sql_log']
 REQUIREMENTS = [
