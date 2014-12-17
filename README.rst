@@ -85,7 +85,17 @@ your PG user should be able to create / delete databases.
 With ``tox`` installed, simply run the command ``tox``. This should run
 the tests for Sqlite and postgresql environments, if ready.
 
---------------
+Logging in Postgresql
+~~~~~~~~~~~~~~~~~~~~~
+
+For you information, logs are not activated by default in postgresql settings.
+To make sure your log file will display the START/STOP events, go edit
+your ``postgresql.conf`` file and set this variable::
+
+    log_min_duration_statement = 0
+
+For other database systems, please refer to the official documentation.
+
 
 This software is published under the terms of the MIT License. Please
 see the ``LICENSE`` file for more information.
