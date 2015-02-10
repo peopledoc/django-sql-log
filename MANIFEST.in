@@ -1,0 +1,3 @@
+recursive-include django_sql_log *
+global-exclude *.pyc
+include README.rst LICENSE
