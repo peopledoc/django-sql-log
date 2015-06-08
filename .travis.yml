@@ -6,4 +6,4 @@ python:
 install:
   - pip install tox>=1.8
 script:
-  - tox -e sqlite-django16,sqlite-django17,sqlite-django18
+  - tox -e sqlite-django16,sqlite-django17,sqlite-django18,sqlite-latest
