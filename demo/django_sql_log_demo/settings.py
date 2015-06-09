@@ -1,6 +1,8 @@
 # Django settings for django_sql_log_demo project.
 
 import os
+from django import get_version
+from distutils.version import StrictVersion
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,6 +17,11 @@ cfg_dir = os.path.join(root_dir, 'etc')
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+_version = StrictVersion(get_version())
+# If version == 1.7.x, skip the warning
+if StrictVersion('1.6') < _version < StrictVersion('1.8'):
+    TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
 
 MANAGERS = ADMINS
 
