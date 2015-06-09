@@ -1,6 +1,9 @@
 Django simple SQL log
 =====================
 
+.. image:: https://travis-ci.org/novafloss/django-sql-log.svg?branch=master
+
+
 Goal: provide a middleware that inserts start/stop annotations that
 would land on the SQL logs.
 

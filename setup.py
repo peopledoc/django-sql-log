@@ -7,7 +7,7 @@ from setuptools import setup
 here = os.path.abspath(os.path.dirname(__file__))
 
 NAME = u'django-sql-log'
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 README = open(os.path.join(here, 'README.rst')).read()
 DESCRIPTION = u'Write Start/Stop events in your SQL logs.'
 PACKAGES = ['django_sql_log']

@@ -1,5 +1,11 @@
 # django-sql-log
 
+## 1.2.0 (2015-06-09)
+
+* Picked up License (MIT)
+* Travis build is ready.
+* `django-sql-log` is now ready for Django 1.6, 1.7, 1.8, thanks to tox.
+
 ## 1.1.0 (2014-12-08)
 
 (yes, that's 3 releases on the same day).
