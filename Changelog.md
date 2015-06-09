@@ -1,5 +1,11 @@
 # django-sql-log
 
+## 1.1.0 (2014-12-08)
+
+(yes, that's 3 releases on the same day).
+
+* Merging middlewares. We used to have two middlewares to handle requests (start) and responses (stop). Now everything is handled by a single middleware.
+
 ## 1.0.1 (2014-12-08)
 
 Bugfixes:
@@ -11,5 +17,5 @@ Bugfixes:
 
 First public release.
 
-* Basic functionality, just set this middleware up, and you can have Start/Stop markers in your database log,
+* Basic functionality, just set these middlewares up, and you can have Start/Stop markers in your database log,
 * This module has been tested along with Postgresql / SQLite and Django 1.6.
