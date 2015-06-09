@@ -12,7 +12,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 DESCRIPTION = u'Write Start/Stop events in your SQL logs.'
 PACKAGES = ['django_sql_log']
 REQUIREMENTS = [
-    'django<1.7',
+    'Django',
 ]
 AUTHOR = u'Novapost'
 EMAIL = u'bruno.bord@novapost.fr'
