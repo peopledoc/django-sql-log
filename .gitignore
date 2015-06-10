@@ -4,5 +4,4 @@ dist/
 *.pyc
 *.pyo
 .tox/
-demo/django_sql_log_demo/settings_pg.py
 var/db.sqlite

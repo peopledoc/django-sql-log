@@ -77,13 +77,17 @@ the demo tests):
 Hacking
 -------
 
-If you want to run the test-suite, you **must** have a
-``settings_pg.py`` file in your ``demo/django_sql_log_demo`` directory.
+If you want to run the test-suite, have a look at the ``settings_pg.py`` file
+in your ``demo/django_sql_log_demo`` directory.
 
-You can find an example file that you may copy, and amend with correct
-credentials to your Postgresql server. Please bear in mind that the
-database you'll have to connect to must exist on this server, and that
-your PG user should be able to create / delete databases.
+It carries the basic database settings you'll need to run tox tests and
+eventually store demo data. Hopefully, by simply creating a
+``settings_pg_local.py`` file, you can override the default credentials to fit
+your Postgresql server specifics.
+
+Please bear in mind that the database you'll have to connect to **must exist**
+on this server, and that your PG user should be able to *create* and *delete*
+databases.
 
 With ``tox`` installed, simply run the command ``tox``. This should run
 the tests for Sqlite and postgresql environments, if ready.
