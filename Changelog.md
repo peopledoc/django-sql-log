@@ -1,9 +1,13 @@
 # django-sql-log
 
+## master (unreleased)
+
+* Nothing changed yet.
+
 ## 1.2.1 (2015-06-10)
 
 * Fixed unwanted warnings in Django 1.7 tests (#14)
-* Travis tests build with Postgresql and up to the latest Django version.
+* Travis tests build with Postgresql and up to the latest Django version (#13).
 
 ## 1.2.0 (2015-06-09)
 
