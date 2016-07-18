@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-* Nothing changed yet.
+* Added a few tests using query count - assertNumQueries (#19).
 
 ## 1.2.1 (2015-06-10)
 
