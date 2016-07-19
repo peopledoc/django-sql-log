@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.test.utils import override_settings
+from django.test.utils import override_settings, modify_settings
 
 from mock import Mock, patch, MagicMock
 
@@ -82,3 +82,23 @@ class FormatTestCase(TestCase):
     def test_500(self):
         log_string = get_log_string(self.Request('/500/'), 'START')
         self.assertTrue(log_string)  # this 500 view doesn't trigger bad log.
+
+
+class QueryTest(TestCase):
+
+    def test_with_log(self):
+        with self.assertNumQueries(3):
+            # 3 queries:
+            # * VIEW START
+            # * select * from dummy_article
+            # * VIEW STOP
+            self.client.get('/')
+
+    @modify_settings(MIDDLEWARE_CLASSES={
+        'remove': ['django_sql_log.middleware.SQLLoggingMiddleware']}
+    )
+    def test_without_log(self):
+        with self.assertNumQueries(1):
+            # 1 query:
+            # * select * from dummy_article
+            self.client.get('/')
