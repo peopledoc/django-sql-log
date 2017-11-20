@@ -115,9 +115,19 @@ ROOT_URLCONF = 'django_sql_log_demo.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'django_sql_log_demo.wsgi.application'
 
+template_directory = os.path.join(demoproject_dir, 'templates')
+
 TEMPLATE_DIRS = (
-    os.path.join(demoproject_dir, 'templates'),
+    template_directory,
 )
+# Especially for Django 1.8 and later...
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'DIRS': TEMPLATE_DIRS,
+    },
+]
 
 INSTALLED_APPS = (
     'django.contrib.auth',
