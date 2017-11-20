@@ -16,7 +16,7 @@ REQUIREMENTS = [
 ]
 AUTHOR = u'Novapost'
 EMAIL = u'bruno.bord@novapost.fr'
-URL = u'https://github.com/novafloss/django-sql-log'
+URL = u'https://github.com/peopledoc/django-sql-log'
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'Environment :: Web Environment',
