@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 * Added a few tests using query count - assertNumQueries (#19).
+* Fixed template settings for Django 1.8 and later (#22).
 
 ## 1.2.1 (2015-06-10)
 
